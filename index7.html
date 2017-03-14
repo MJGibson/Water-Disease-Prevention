@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>d3.js with leaflet.js</title>
+	<link href="nouislider.min.css" rel="stylesheet">
+    <link 
+        rel="stylesheet" 
+        href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"
+    />
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+	<script src="turf.min.js" charset="utf-8"></script>
+	<script src="nouislider.min.js"></script>
+	 
+    <style>
+    
+	div.tooltip {	
+		position: absolute;			
+		text-align: center;			
+		//width: 60px;					
+		//height: 28px;					
+		padding: 2px;				
+		font: 12px sans-serif;		
+		background: lightsteelblue;	
+		border: 0px;		
+		border-radius: 8px;			
+		pointer-events: none;			
+	}
+	.axis {
+	  shape-rendering: crispEdges;
+	}
+
+	.x.axis line {
+	  stroke: lightgrey;
+	  
+	}
+	.x.axis text { display: none; }
+	.x.axis .minor {
+	  stroke-opacity: .5;
+	}
+
+	.x.axis path {
+	  display: none;
+	}
+
+	.y.axis line, .y.axis path {
+	  fill: none;
+	  stroke: #000;
+	}
+   
+</style>
+</head>
+<body>
+	<a href="information.html" onclick="window.open('information.html', 'newwindow', 'width=300, height=250'); return false;">water diseases information</a>
+	<div id="map" style="width: 100%;height: 600px;"></div>
+	
+	
+	Color by:<select id="coloring_select">
+	  <option value="terrain">terrain</option>
+	  <option value="population">population</option>
+	  <option value="poverty">poverty</option>
+	  <option value="cattle">cattle density</option>
+	  <option value="access">no access to distributed water</option>
+	  <option value="cholera">cholera infection 2016</option>
+	  <option value="rainfall">rainfall</option>
+	  <option value="drought">drought indices</option>
+	  <option value="disease">disease multiplier</option>
+	  <option value="water">need for drinkable water</option>
+	</select></br></br>
+	<div id="range0"></div></br>
+	
+	
+	<script type="text/javascript">
+	
+		var newwindow;
+		function poptastic(url)
+		{
+			newwindow=window.open(url,'name','height=400,width=200');
+			if (window.focus) {newwindow.focus()}
+		}
+	
+		var div = d3.select("body").append("div")	
+		.attr("class", "tooltip")				
+		.style("opacity", 0);
+		
+		var w = window.innerWidth;
+		var h = window.innerHeight;
+		document.getElementById("map").style.height=(h-200)+"px";
+        var map = L.map('map').setView([0.220998, 37.875290], 7);//L.map('map').setView([-41.2858, 174.7868], 13);
+        mapLink = 
+            '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+		L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
+				maxZoom: 20,
+				subdomains:['mt0','mt1','mt2','mt3']
+			}).addTo(map);
+        // L.tileLayer(
+           // 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+           // attribution: '&copy; ' + mapLink + ' Contributors',
+           // maxZoom: 18,
+           // }).addTo(map);
+				
+	/* Initialize the SVG layer */
+	map._initPathRoot()    
+	// Define color scale
+	//var linearScale = d3.scale.linear()
+    //                    .domain([0, 3500])
+    //                     .clamp(true)
+	//	.range(['#ffaa80', '#4d1a00']);
+	//var color_scale_cholera = d3.scale.linear()
+	//	.domain([0, 3500])
+	//	.clamp(true)
+	//	.range(['#ffaa80', '#4d1a00']);
+	// var color_scale_cholera = d3.scale.sqrt().domain([0, 3500])
+		// .clamp(true)
+		// .range(['#ffeee6', '#4d1a00']);
+	var color_scale_cholera = d3.scale.sqrt().domain([0.0, 10.0])
+		.clamp(true)
+		.range(['#ffeee6', '#4d1a00']);
+		
+	var color_scale_pop = d3.scale.sqrt().domain([0.0, 108000.0])
+		.clamp(true)
+		.range(['#ffffff', '#ff0000']);
+	var color_scale_poverty = d3.scale.sqrt().domain([0.0, 108000.0])
+		.clamp(true)
+		.range(['#ffffff', '#000000']);
+	var color_scale_access = d3.scale.sqrt().domain([0.001, 108000.0])
+		.clamp(true)
+		.range(['#00ff00', '#000000']);	
+		
+	var color_scale_cattle = d3.scale.sqrt().domain([0.0, 1340.0])
+		.clamp(true)
+		.range(['#ffe6ff', '#660066']);
+	var color_scale_rainfall1= d3.scale.sqrt()
+	.domain([0.0, 0.113003])
+	.clamp(true)
+	.range(['#ffaa80', '#ff0000']);
+	
+	var color_scale_water = d3.scale.sqrt().domain([0.0, 108000.0*100.0])
+		.clamp(true)
+		.range(['#ffffff', '#0000ff']);
+	
+	var color_scale_drought= d3.scale.linear()
+	.domain([-2.0, 0.5,2.0])
+	.clamp(true)
+	.range(['#0000ff','#ffff66','#ff0000']);
+	
+	var color_scale_disease= d3.scale.linear()
+	.domain([0.0, 108000.0/10.0])
+	.clamp(true)
+	.range(['#ffff66', '#cc3300']);
+	
+	//var cholera_path;
+	//var cholera_active_zones=[6 ,49 ,56 ,30, 0, 50, 5, 15, 37, 38, 13, 39, 1, 17, 8 ,34 ,37, 3 ,47];
+	var village_cholera_info={};
+	var pop_active_path;
+	var feature_pop_active;
+	var selected_color_scheme=document.getElementById("coloring_select").value;//id="coloring_select"
+	var time_data_byID={};
+	var time_data_byID2={};
+	var time_value=0;
+	//console.log(selected_color_scheme)
+	/* We simply pick up the SVG from the map object */
+	var svg = d3.select("#map").select("svg"),
+	g = svg.append("g");
+	
+	var mini_width=200;
+	var mini_height=100;
+	var mini_left=200;
+	var mini_top=10;
+	var	chart2 = d3.select("body")
+	.append("svg")
+		.attr("width", mini_width)
+		.attr("height",mini_height)
+	.append("g")
+		.attr("transform", "translate(" + (mini_left+20) + "," + (mini_top) + ")");
+	
+	var	mini_x = d3.time.scale().range([0, mini_width-40]);
+	var	mini_y = d3.scale.linear().range([mini_height-20, 0]);
+	// Define the axes
+	var	xAxis = d3.svg.axis().scale(mini_x)
+		.orient("bottom").ticks(15);
+
+	var	yAxis = d3.svg.axis().scale(mini_y)
+		.orient("left").ticks(5);
+	mini_x.domain([0,15]);
+	mini_y.domain([0.0, 0.113003]);
+	var line = d3.svg.line()
+	// assign the X function to plot our line as we wish
+	.x(function(d,i) { 
+		// verbose logging to show what's actually being done
+		//console.log('Plotting X value for data point: ' + d + ' using index: ' + i + ' to be at: ' + mini_x(i) + ' using our xScale.');
+		// return the X coordinate where we want to plot this datapoint
+		return mini_x(i); 
+	})
+	.y(function(d) { 
+		// verbose logging to show what's actually being done
+		//console.log('Plotting Y value for data point: ' + d + ' to be at: ' + mini_y(d) + " using our yScale.");
+		// return the Y coordinate where we want to plot this datapoint
+		return mini_y(d); 
+	})
+	
+	chart2.append("g")
+		.attr("class", "x axis")
+		.attr("transform", "translate("+(-mini_width+20)+"," + (mini_height-15) + ")")
+		.call(xAxis);
+
+	// Add the Y Axis
+	chart2.append("g")
+		.attr("class", "y axis")
+		.attr("transform", "translate("+(-mini_width+20)+"," + 0 + ")")
+		.call(yAxis);
+	
+	var myline;
+	var stepSlider = document.getElementById('range0');
+	document.getElementById("range0").style.width = "400px";
+	document.getElementById("range0").style.visibility = "hidden";
+	//	document.getElementById("range0").style.left = 50+"px";
+
+	
+	noUiSlider.create(stepSlider, {
+		start: [ 0.0 ],
+		step: 1,
+		//snap: true,
+		tooltips: true,
+		range: {
+			'min': [  0.0 ],
+			'max': [ 14.0 ]
+		}
+	});
+	
+	stepSlider.noUiSlider.on('change', function( values, handle ) {
+		
+		time_value=	parseInt(values[handle]);
+		var isv = document.getElementById("coloring_select").value;
+		if (isv=="rainfall"){
+			
+			feature_pop_active.transition()
+			.style('fill', function(d) {
+				
+					//console.log(color_scale_rainfall1(time_data_byID[d.properties.SLID][parseInt(time_value)]))
+					return color_scale_rainfall1(time_data_byID[d.properties.SLID][time_value]);
+				
+			})
+		}
+		if (isv=="drought"){
+			
+			feature_pop_active.transition()
+			.style('fill', function(d) {
+				//console.log(time_data_byID[d.properties.SLID])
+					//console.log(color_scale_rainfall1(time_data_byID[d.properties.SLID][parseInt(time_value)]))
+					return color_scale_drought(time_data_byID2[d.properties.SLID][time_value]);
+				
+			})
+		}
+		if (isv=="disease"){
+			
+			feature_pop_active.transition()
+			.style('fill', function(d) {
+				//console.log(time_data_byID[d.properties.SLID])
+					//console.log(color_scale_rainfall1(time_data_byID[d.properties.SLID][parseInt(time_value)]))
+					var flood_factor=1.0;
+					if ((parseFloat(time_data_byID[d.properties.SLID][time_value])*1000.0)>6){
+						flood_factor=(parseFloat(time_data_byID[d.properties.SLID][time_value])*1000.0)-6.0;
+					}
+					//console.log(flood_factor)
+					var drought_factor=1.0;
+					if (parseFloat(time_data_byID2[d.properties.SLID][time_value])>=4.0){
+						drought_factor=(parseFloat(time_data_byID2[d.properties.SLID][time_value]));
+					}
+					//console.log(drought_factor)
+					var access =0.001;
+					if (d.properties.Sheet1__Pc>0.0){
+						access = d.properties.Sheet1__Pc;
+					}
+					var access_factor=access*d.properties.SUM_TOTAL
+					var poverty =d.properties.Max_Max_BP*d.properties.SUM_TOTAL;
+					var cattle = d.properties.Max_Max_CA;
+					var disease = flood_factor*drought_factor*(1.0+access+poverty+cattle);
+					
+					
+					return color_scale_disease(disease);
+					
+				
+			})
+		}
+		if (isv=="water"){
+			
+			feature_pop_active.transition()
+			.style('fill', function(d) {
+				var flood_factor=1.0;
+										if ((parseFloat(time_data_byID[d.properties.SLID][time_value])*1000.0)>6){
+											flood_factor=(parseFloat(time_data_byID[d.properties.SLID][time_value])*1000.0)-6.0;
+										}
+										//console.log(flood_factor)
+										var drought_factor=1.0;
+										if (parseFloat(time_data_byID2[d.properties.SLID][time_value])>=4.0){
+											drought_factor=(parseFloat(time_data_byID2[d.properties.SLID][time_value]));
+										}
+										//console.log(drought_factor)
+										var access =0.001;
+										if (d.properties.Sheet1__Pc>0.0){
+											access = d.properties.Sheet1__Pc;
+										}
+										var access_factor=access*d.properties.SUM_TOTAL
+										var poverty =d.properties.Max_Max_BP*d.properties.SUM_TOTAL;
+										var cattle = d.properties.Max_Max_CA;
+										var disease = flood_factor*drought_factor*(1.0+access+poverty+cattle);
+										return color_scale_water(disease*2.0*d.properties.SUM_TOTAL);
+				
+			})
+		}
+	});
+	
+	svg.style("cursor", "default");
+	d3.json('NewCleanData.geojson', function (error, pop_active) {
+		d3.csv('100CaseHealth.csv', function (error, healthPlaces) {
+			d3.json("KenyaCOutbreak2016.geojson", function(error, cholera_history) {
+				d3.csv('rainfall-drought.csv', function (error, timeData) {
+				
+				function toRange(mynb){
+					if (mynb<-2.0){
+						return -2.0;
+					}
+					else if (mynb>2.0){
+						return 2.0;
+					}
+					else return mynb;
+				}
+				
+				for (var i0=0,j0=timeData.length;i0<j0;i0++){
+					time_data_byID[timeData[i0]['STID']]=[parseFloat(timeData[i0]['T0']),parseFloat(timeData[i0]['T1']),parseFloat(timeData[i0]['T2']),parseFloat(timeData[i0]['T3']),parseFloat(timeData[i0]['T4']),parseFloat(timeData[i0]['T5']),parseFloat(timeData[i0]['T6']),parseFloat(timeData[i0]['T7']),parseFloat(timeData[i0]['T8']),parseFloat(timeData[i0]['T8']),parseFloat(timeData[i0]['T9']),parseFloat(timeData[i0]['T10']),parseFloat(timeData[i0]['T11']),parseFloat(timeData[i0]['T12']),parseFloat(timeData[i0]['T13']),parseFloat(timeData[i0]['T14'])];
+					time_data_byID2[timeData[i0]['STID']]=[toRange(parseFloat(timeData[i0]['T15'])),toRange(parseFloat(timeData[i0]['T16'])),toRange(parseFloat(timeData[i0]['T17'])),toRange(parseFloat(timeData[i0]['T18'])),toRange(parseFloat(timeData[i0]['T19'])),toRange(parseFloat(timeData[i0]['T20'])),toRange(parseFloat(timeData[i0]['T21'])),toRange(parseFloat(timeData[i0]['T22'])),toRange(parseFloat(timeData[i0]['T23'])),toRange(parseFloat(timeData[i0]['T24'])),toRange(parseFloat(timeData[i0]['T25'])),toRange(parseFloat(timeData[i0]['T26'])),toRange(parseFloat(timeData[i0]['T27'])),toRange(parseFloat(timeData[i0]['T28'])),toRange(parseFloat(timeData[i0]['T29']))];
+				}
+				//console.log(time_data_byID[timeData[1]['STID']].splice(0,15))
+				myline=chart2.append("svg:path").attr("d", line(time_data_byID[timeData[1]['STID']])).style("stroke-width", 2.0)
+						.style("stroke", "steelblue").style("fill", "none").attr("transform", "translate("+(-mini_width+20)+"," + (-0) + ")").style("opacity", 0);
+				
+				//console.log(time_data_byID[timeData[1]['STID']])
+				//console.log(time_data_byID)	
+					// for (var i0=0,j0=cholera_active_zones.length;i0<j0;i0++){
+						// for (var i1=0,j1=villages.length;i1<j1;i1++){
+							// var point1 = turf.point([villages[i1]['LONGDD'],villages[i1]['LATDD']]);
+							// var isInside = turf.inside(point1, cholera_history.features[i0]);
+							// if (isInside){
+								// village_cholera_info[i1]=[villages[i1].NAME,cholera_history.features[i0].properties.NoCases];
+							// }
+						// }
+					// }
+					// console.log(village_cholera_info)
+					if (error) throw error;
+					healthPlaces.forEach(function(d) {
+						//console.log(d)
+						if (d.LAT && d.LONG){
+							d.LatLng = new L.LatLng(d.LAT,d.LONG)
+						}
+						else{
+							d.LatLng = new L.LatLng(0.0,0.0)
+						}
+					})
+					// villages.forEach(function(d) {
+						// d.LatLng = new L.LatLng(d.LATDD,
+												// d.LONGDD)
+					// })
+					//console.log(villages)
+					//console.log(healthPlaces)
+					
+					
+					function projectPoint(x, y) {
+					  var point = map.latLngToLayerPoint(new L.LatLng(y, x));
+					  this.stream.point(point.x, point.y);
+					}
+					
+					var transform = d3.geo.transform({point: projectPoint});
+					//cholera_path= d3.geo.path().projection(transform);
+					//var transform2 = d3.geo.transform({point: projectPoint});
+					pop_active_path= d3.geo.path().projection(transform);
+					
+					//fillCholeraFn)
+						// .on("mouseover", function(d) {		
+						// //console.log(d)
+							// div.transition()		
+								// .duration(200)		
+								// .style("opacity", .9);	
+							// //d3.select(this).style("cursor", "default");
+							// div	.html("zone "+d.properties.FID_1 + " - no cholera cases: "+d.properties.NoCases+"<br/>")	
+								// .style("left", (d3.event.pageX) + "px")		
+								// .style("top", (d3.event.pageY - 28) + "px");	
+							// })					
+						// .on("mouseout", function(d) {		
+							// div.transition()		
+								// .duration(500)		
+								// .style("opacity", 0);
+							// //d3.select(this).style("cursor", "hand");
+						// });
+					
+					// var feature3 = g.selectAll("path.cholera_history").attr("id", "cholera_history")
+						// .data(cholera_history.features)
+						// .enter().append("path")
+						// .attr("d", cholera_path)
+						// .style("opacity", .9)
+						// .style('fill', fillCholeraFn)
+						// .on("mouseover", function(d) {		
+						// //console.log(d)
+							// div.transition()		
+								// .duration(200)		
+								// .style("opacity", .9);	
+							// //d3.select(this).style("cursor", "default");
+							// div	.html("zone "+d.properties.FID_1 + " - no cholera cases: "+d.properties.NoCases+"<br/>")	
+								// .style("left", (d3.event.pageX) + "px")		
+								// .style("top", (d3.event.pageY - 28) + "px");	
+							// })					
+						// .on("mouseout", function(d) {		
+							// div.transition()		
+								// .duration(500)		
+								// .style("opacity", 0);
+							// //d3.select(this).style("cursor", "hand");
+						// });
+					// Get province color
+					//console.log(pop_active.features);
+					//var mstr =""; 
+					//for (var i0=0,j0=pop_active.features.length;i0<j0;i0++){
+					//	 mstr+=pop_active.features[i0].properties.SLID+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))
+					//	 mstr+=(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+","+(Math.floor(Math.random()*8))+"\n"
+					//}
+					 //console.log( mstr)
+					
+					feature_pop_active = g.selectAll("path.pop_active").attr("id", "pop_active")
+						.data(pop_active.features)
+						.enter().append("path")
+						.attr("d", pop_active_path)
+						.style("opacity", 0.2)
+						.style("stroke-width", 0.5)
+						.style("stroke", "black")
+						.style('fill', fillPopFn)
+						.on("mouseover", function(d) {		
+						//console.log(d)
+							div.transition()		
+								.duration(200)		
+								.style("opacity", .9);	
+							//d3.select(this).style("cursor", "default");
+							if (d.properties.SUM_TOTAL>0){	
+								div.html("zone "+d.properties.SLNAME +
+									" </br>population: "+d.properties.SUM_TOTAL+
+									" </br>under poverty line: "+parseInt(d.properties.Max_Max_BP*d.properties.SUM_TOTAL)+
+									" </br>cattle density per km2: "+parseInt(d.properties.Max_Max_CA)+
+									" </br>no cholera cases: "+d.properties.NoCases+
+									"<br/>Cholera Infection rate:"+d.properties.Inf_100k/100+"/1000<br/>")
+								//console.log(time_data_byID[d.properties.SLID])
+								var isv = document.getElementById("coloring_select").value;
+								if (isv=="rainfall"){
+									myline.transition()		
+									.duration(500)		
+									.attr("d", line(time_data_byID[d.properties.SLID])).style("opacity", 1.0);
+									//.attr("d", line(time_data_byID[d.properties.SLID].splice(0,15))).style("opacity", 1.0);
+								}
+								if (isv=="drought"){
+									myline.transition()		
+									.duration(500)		
+									.attr("d", line(time_data_byID2[d.properties.SLID])).style("opacity", 1.0);
+								}
+							}
+							else {div.html("zone "+d.properties.SLNAME +
+									" </br>district: "+d.properties.DISTNAME+
+									" </br>population: "+d.properties.SUM_TOTAL+"<br/>")
+							}
+							
+								div.style("left", (d3.event.pageX+40) + "px")		
+									.style("top", (d3.event.pageY - 28) + "px");	
+								})
+							
+							
+						.on("mouseout", function(d) {		
+							div.transition()		
+								.duration(500)		
+								.style("opacity", 0);
+							myline.transition()		
+								.duration(500)		
+								.style("opacity", 0.0);;
+							//d3.select(this).style("cursor", "hand");
+						});
+					
+					function fillPopFn(d){
+						//console.log(d.properties)
+						if (selected_color_scheme=="terrain"){
+							return "white"
+						}
+						
+						//else if (selected_color_scheme=="rainfall"){
+						//	return color_scale_rainfall1(time_data_byID[d.properties.SLID][time_value]);
+						//}
+						else {
+							return color_scale_cholera(d.properties.Inf_100k/100);
+						}
+					}
+					// function fillCholeraFn(d){
+						// //console.log(d.properties)
+					  // return color_scale_cholera(d.properties.NoCases);
+					// }
+					
+					// var feature1 = g.selectAll("path").attr("id", "cholera_history")
+						// .data(cholera_history.features)
+						// .enter().append("path")
+						// .attr("d", cholera_path)
+						// .style("opacity", .9)
+						// .style('fill', fillCholeraFn)
+						// .on("mouseover", function(d) {		
+						// //console.log(d)
+							// div.transition()		
+								// .duration(200)		
+								// .style("opacity", .9);	
+							// //d3.select(this).style("cursor", "default");
+							// div	.html("zone "+d.properties.FID_1 + " - no cholera cases: "+d.properties.NoCases+"<br/>")	
+								// .style("left", (d3.event.pageX) + "px")		
+								// .style("top", (d3.event.pageY - 28) + "px");	
+							// })					
+						// .on("mouseout", function(d) {		
+							// div.transition()		
+								// .duration(500)		
+								// .style("opacity", 0);
+							// //d3.select(this).style("cursor", "hand");
+						// });
+					// Get province color
+					// function fillCholeraFn(d){
+						// //console.log(d.properties)
+					  // return color_scale_cholera(d.properties.NoCases);
+					// }
+					
+					
+					//console.log(villages)
+					//var gjLayer = L.geoJson(cholera_history);
+					
+					//console.log(cholera_history.features[0])
+					//for (var i=0,j=villages.length;i<j;i++){
+					//	var point1 = turf.point([villages[i]['LONGDD'],villages[i]['LATDD']]);
+					//	var isInside1 = turf.inside(point1, cholera_history.features[0]);
+					//	//var results = leafletPip.pointInLayer([villages[i]['LATDD'] ,villages[i]['LONGDD'] ], gjLayer);
+					//	//console.log(results)
+					//}
+					
+					// var feature1 = g.selectAll("circle.villages")
+						// .attr("id", "villages")
+						// .data(villages)
+						// .enter().append("circle")
+						// .style("stroke", "black")  
+						// .style("opacity", .6) 
+						// .style("fill", "red")
+						// .attr("r", 3)
+						// .on("mouseover", function(d) {		
+						// //console.log(d)
+							// div.transition()		
+								// .duration(200)		
+								// .style("opacity", .9);
+						// //console.log(d)							
+							// //d3.select(this).style("cursor", "default");
+							// div	.html(d.NAME+ "<br/>")	
+								// .style("left", (d3.event.pageX) + "px")		
+								// .style("top", (d3.event.pageY - 28) + "px");	
+							// })					
+						// .on("mouseout", function(d) {		
+							// div.transition()		
+								// .duration(500)		
+								// .style("opacity", 0);
+							// //d3.select(this).style("cursor", "hand");
+						// });
+					var feature2 = g.selectAll("circle.health")
+						.attr("id", "health")
+						.data(healthPlaces)
+						.enter().append("circle")
+						.style("stroke", "black")  
+						.style("opacity", .6) 
+						.style("fill", "green")
+						.attr("r", 3)
+						.on("mouseover", function(d) {		
+						//console.log(d)
+							div.transition()		
+								.duration(200)		
+								.style("opacity", .9);	
+							//d3.select(this).style("cursor", "default");
+							div	.html(d.F_NAME + "<br/>")	
+								.style("left", (d3.event.pageX) + "px")		
+								.style("top", (d3.event.pageY - 28) + "px");	
+							})					
+						.on("mouseout", function(d) {		
+							div.transition()		
+								.duration(500)		
+								.style("opacity", 0);
+							//d3.select(this).style("cursor", "hand");
+						});
+					
+					
+					map.on("viewreset", update);
+					update();
+					
+					function update() {
+						
+						feature2.attr("transform", 
+						function(d) { 
+							 return "translate("+ 
+								 map.latLngToLayerPoint(d.LatLng).x +","+ 
+								 map.latLngToLayerPoint(d.LatLng).y +")";
+							 }
+						)
+						
+						//feature3.attr("d", cholera_path);
+						feature_pop_active.attr("d", pop_active_path);
+						
+						
+					}
+					d3.select("#coloring_select").on("change",switchColor);
+					function switchColor() {
+						var isv = document.getElementById("coloring_select").value;
+							if (isv=="rainfall"){
+								document.getElementById("range0").style.visibility = "visible";
+								mini_y.domain([0.0, 0.113003]);
+									yAxis = d3.svg.axis().scale(mini_y)
+								.orient("left").ticks(5);
+								d3.select(".y")
+								.call(yAxis);
+								line = d3.svg.line()
+								// assign the X function to plot our line as we wish
+								.x(function(d,i) { 
+									// verbose logging to show what's actually being done
+									//console.log('Plotting X value for data point: ' + d + ' using index: ' + i + ' to be at: ' + mini_x(i) + ' using our xScale.');
+									// return the X coordinate where we want to plot this datapoint
+									return mini_x(i); 
+								})
+								.y(function(d) { 
+									// verbose logging to show what's actually being done
+									//console.log('Plotting Y value for data point: ' + d + ' to be at: ' + mini_y(d) + " using our yScale.");
+									// return the Y coordinate where we want to plot this datapoint
+									return mini_y(d); 
+								})
+							}
+							else if (isv=="drought"){
+								document.getElementById("range0").style.visibility = "visible";
+								mini_y.domain([-2.0, 2.0]);
+									yAxis = d3.svg.axis().scale(mini_y)
+								.orient("left").ticks(5);
+								d3.select(".y")
+								.call(yAxis);
+								line = d3.svg.line()
+								// assign the X function to plot our line as we wish
+								.x(function(d,i) { 
+									// verbose logging to show what's actually being done
+									//console.log('Plotting X value for data point: ' + d + ' using index: ' + i + ' to be at: ' + mini_x(i) + ' using our xScale.');
+									// return the X coordinate where we want to plot this datapoint
+									return mini_x(i); 
+								})
+								.y(function(d) { 
+									// verbose logging to show what's actually being done
+									//console.log('Plotting Y value for data point: ' + d + ' to be at: ' + mini_y(d) + " using our yScale.");
+									// return the Y coordinate where we want to plot this datapoint
+									return mini_y(d); 
+								})
+							}
+							else if (isv=="disease"){
+								document.getElementById("range0").style.visibility = "visible";
+							}
+							else if (isv=="water"){
+								document.getElementById("range0").style.visibility = "visible";
+							}
+							else{
+								document.getElementById("range0").style.visibility = "hidden";
+							}
+						
+						
+						
+							feature_pop_active
+								.transition()
+								.style('fill', function(d) {
+									if (isv=="terrain"){
+										return "white"
+									}
+									else if (isv=="cholera"){
+										return color_scale_cholera(d.properties.Inf_100k/100);
+									}
+									else if (isv=="population"){
+										return color_scale_pop(d.properties.SUM_TOTAL);
+									}
+									else if (isv=="poverty"){
+										return color_scale_poverty(parseInt(d.properties.Max_Max_BP*d.properties.SUM_TOTAL));
+									}
+									else if (isv=="cattle"){
+										return color_scale_cattle(parseInt(d.properties.Max_Max_CA));
+									}
+									else if (isv=="access"){
+										var access =0.001;
+										if (d.properties.Sheet1__Pc>0.0){
+											access = d.properties.Sheet1__Pc;
+										}
+										return color_scale_access(parseInt(access*d.properties.SUM_TOTAL));
+									}
+									else if (isv=="rainfall"){
+										return color_scale_rainfall1(time_data_byID[d.properties.SLID][time_value]);
+									}
+									else if (isv=="drought"){
+										return color_scale_drought(time_data_byID2[d.properties.SLID][time_value]);
+									}
+									else if (isv=="disease"){
+										var flood_factor=1.0;
+										if ((parseFloat(time_data_byID[d.properties.SLID][time_value])*1000.0)>6){
+											flood_factor=(parseFloat(time_data_byID[d.properties.SLID][time_value])*1000.0)-6.0;
+										}
+										//console.log(flood_factor)
+										var drought_factor=1.0;
+										if (parseFloat(time_data_byID2[d.properties.SLID][time_value])>=4.0){
+											drought_factor=(parseFloat(time_data_byID2[d.properties.SLID][time_value]));
+										}
+										//console.log(drought_factor)
+										var access =0.001;
+										if (d.properties.Sheet1__Pc>0.0){
+											access = d.properties.Sheet1__Pc;
+										}
+										var access_factor=access*d.properties.SUM_TOTAL
+										var poverty =d.properties.Max_Max_BP*d.properties.SUM_TOTAL;
+										var cattle = d.properties.Max_Max_CA;
+										var disease = flood_factor*drought_factor*(1.0+access+poverty+cattle);
+										
+										
+										return color_scale_disease(disease);
+									}
+									else if (isv=="water"){
+										var flood_factor=1.0;
+										if ((parseFloat(time_data_byID[d.properties.SLID][time_value])*1000.0)>6){
+											flood_factor=(parseFloat(time_data_byID[d.properties.SLID][time_value])*1000.0)-6.0;
+										}
+										//console.log(flood_factor)
+										var drought_factor=1.0;
+										if (parseFloat(time_data_byID2[d.properties.SLID][time_value])>=4.0){
+											drought_factor=(parseFloat(time_data_byID2[d.properties.SLID][time_value]));
+										}
+										//console.log(drought_factor)
+										var access =0.001;
+										if (d.properties.Sheet1__Pc>0.0){
+											access = d.properties.Sheet1__Pc;
+										}
+										var access_factor=access*d.properties.SUM_TOTAL
+										var poverty =d.properties.Max_Max_BP*d.properties.SUM_TOTAL;
+										var cattle = d.properties.Max_Max_CA;
+										var disease = flood_factor*drought_factor*(1.0+access+poverty+cattle);
+										return color_scale_water(disease*2.0*d.properties.SUM_TOTAL);
+									}
+								})
+								.style("opacity",function(d) {
+									if (isv=="terrain"){
+										return 0.2;
+									}
+									else if (isv=="cholera"){
+										return 0.9;
+									}
+									else if (isv=="population"){
+										return 0.9;
+									}
+									else if (isv=="poverty"){
+										return 0.9;
+									}
+									else if (isv=="access"){
+										return 0.9;
+									}
+									else if (isv=="cattle"){
+										return 0.9;
+									}
+									else if (isv=="drought"){
+										return 0.9;
+									}
+									else if (isv=="rainfall"){
+										return 0.9;
+									}
+									else if (isv=="water"){
+										return 0.9;
+									}
+									else if (isv=="disease"){
+										return 0.9;
+									}
+								})
+							  
+						
+					}
+					
+					
+					// d3.select("#cholera_cb").on("change",switchCholera);
+					// function switchCholera() {
+						// var isv = document.getElementById("cholera_cb").checked;
+						// console.log(isv)
+						// if(isv){
+							// //feature3.style("opacity", 1);
+							// feature_pop_active 
+							  // .transition()
+							  // .style("opacity", 0.5);
+						// }
+						// else{
+							// feature_pop_active 
+							  // .transition()
+							  // .style("opacity", 0.0);
+						// }
+						
+					// }
+				});
+			});
+		});
+	});
+	
+</script>
+</body>
+</html>

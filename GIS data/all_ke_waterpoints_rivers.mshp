@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SAGA_METADATA>
+  <HISTORY>
+    <MODULE>Merge Layers</MODULE>
+    <OPTION type="boolean" id="SRCINFO" name="Add Source Information">TRUE</OPTION>
+    <OPTION type="boolean" id="MATCH" name="Match Fields by Name">TRUE</OPTION>
+    <DATA_LIST type="shapes_list" id="INPUT" name="Layers">
+      <DATA>
+        <MODULE>Convert Lines to Points</MODULE>
+        <OPTION type="boolean" id="ADD" name="Insert Additional Points">TRUE</OPTION>
+        <OPTION type="double" id="DIST" name="Insert Distance">500.000000</OPTION>
+        <OPTION type="boolean" id="ADD_POINT_ORDER" name="Add Point Order">FALSE</OPTION>
+        <DATA type="shapes" id="LINES" name="Lines">
+          <FILE>C:\Users\ALBERT~1\AppData\Local\Temp\processing8cf9c49ee27b47f492e50d3021422d57\1488684245.396.shp</FILE>C:\Users\ALBERT~1\AppData\Local\Temp\processing8cf9c49ee27b47f492e50d3021422d57\1488684245.396.shp</DATA>
+      </DATA>
+      <DATA>
+        <MODULE>Merge Layers</MODULE>
+        <OPTION type="boolean" id="SRCINFO" name="Add Source Information">TRUE</OPTION>
+        <OPTION type="boolean" id="MATCH" name="Match Fields by Name">TRUE</OPTION>
+        <DATA_LIST type="shapes_list" id="INPUT" name="Layers">
+          <DATA>
+            <FILE>C:\Users\ALBERT~1\AppData\Local\Temp\processing991adb9a6c9d415281f4387e486b3289\1488682098.825.shp</FILE>
+          </DATA>
+          <DATA>
+            <FILE>C:\Users\ALBERT~1\AppData\Local\Temp\processing991adb9a6c9d415281f4387e486b3289\1488682099.286.shp</FILE>
+          </DATA>
+          <DATA>
+            <FILE>C:/Users/Albert Chen/Data/Cloud/UoE/OneDrive - University of Exeter/OpenDataHack/GIS data/Kenya_ILRI_Water_Points_1.shp</FILE>
+          </DATA>
+          <DATA>
+            <FILE>C:/Users/Albert Chen/Data/Cloud/UoE/OneDrive - University of Exeter/OpenDataHack/GIS data/northkenya_waterpoints.shp</FILE>
+          </DATA>
+        </DATA_LIST>
+      </DATA>
+    </DATA_LIST>
+  </HISTORY>
+  <SOURCE>
+    <FILE>C:/Users/Albert Chen/Data/Cloud/UoE/OneDrive - University of Exeter/OpenDataHack/GIS data/all_ke_waterpoints_rivers.shp</FILE>
+    <DATABASE></DATABASE>
+    <PROJECTION>
+      <OGC_WKT>GEOGCS["GCS_WGS_1984",DATUM["D_WGS_1984",SPHEROID["WGS_1984",6378137,298.257223563]],PRIMEM["Greenwich",0],UNIT["Degree",0.017453292519943295]]</OGC_WKT>
+      <PROJ4>+proj=longlat +a=6378137.000000 +b=6356752.314245 +no_defs</PROJ4>
+      <EPSG>-1</EPSG>
+    </PROJECTION>
+  </SOURCE>
+  <DESCRIPTION></DESCRIPTION>
+</SAGA_METADATA>

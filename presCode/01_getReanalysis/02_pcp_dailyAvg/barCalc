@@ -1,0 +1,11 @@
+read,
+  source="myfile1",
+  fieldset=tp1
+read,
+  source="myfile2",
+  fieldset=tp2
+compute,
+  formula="(tp2+tp1)"
+write,
+  target="myfile3"
+

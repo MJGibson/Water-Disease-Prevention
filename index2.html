@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>d3.js with leaflet.js</title>
+
+    <link 
+        rel="stylesheet" 
+        href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"
+    />
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+	 <script src="turf.min.js" charset="utf-8"></script>
+    <style>
+    
+	div.tooltip {	
+		position: absolute;			
+		text-align: center;			
+		//width: 60px;					
+		//height: 28px;					
+		padding: 2px;				
+		font: 12px sans-serif;		
+		background: lightsteelblue;	
+		border: 0px;		
+		border-radius: 8px;			
+		pointer-events: none;			
+	}
+
+   
+</style>
+</head>
+<body>
+
+	<div id="map" style="width: 100%;height: 600px;"></div>
+
+	<script type="text/javascript">
+		var div = d3.select("body").append("div")	
+		.attr("class", "tooltip")				
+		.style("opacity", 0);
+		
+		var w = window.innerWidth;
+		var h = window.innerHeight;
+		document.getElementById("map").style.height=(h-20)+"px";
+        var map = L.map('map').setView([0.220998, 37.875290], 7);//L.map('map').setView([-41.2858, 174.7868], 13);
+        mapLink = 
+            '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+		L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
+				maxZoom: 20,
+				subdomains:['mt0','mt1','mt2','mt3']
+			}).addTo(map);
+        // L.tileLayer(
+           // 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+           // attribution: '&copy; ' + mapLink + ' Contributors',
+           // maxZoom: 18,
+           // }).addTo(map);
+				
+	/* Initialize the SVG layer */
+	map._initPathRoot()    
+	// Define color scale
+	//var linearScale = d3.scale.linear()
+    //                    .domain([0, 3500])
+    //                     .clamp(true)
+	//	.range(['#ffaa80', '#4d1a00']);
+	//var color_scale_cholera = d3.scale.linear()
+	//	.domain([0, 3500])
+	//	.clamp(true)
+	//	.range(['#ffaa80', '#4d1a00']);
+	var color_scale_cholera = d3.scale.sqrt().domain([0, 3500])
+		.clamp(true)
+		.range(['#ffeee6', '#4d1a00']);
+	
+	var cholera_path;
+	/* We simply pick up the SVG from the map object */
+	var svg = d3.select("#map").select("svg"),
+	g = svg.append("g");
+	svg.style("cursor", "default");
+	d3.csv('100Case_Village0.csv', function (error, villages) {
+		d3.csv('health-facilities.csv', function (error, healthPlaces) {
+			d3.json("KenyaCOutbreak2016.geojson", function(error, cholera_history) {
+				
+
+				//console.log(cholera_history)
+				if (error) throw error;
+				healthPlaces.forEach(function(d) {
+					//console.log(d)
+					if (d.LAT && d.LONG){
+						d.LatLng = new L.LatLng(d.LAT,d.LONG)
+					}
+					else{
+						d.LatLng = new L.LatLng(0.0,0.0)
+					}
+				})
+				villages.forEach(function(d) {
+					d.LatLng = new L.LatLng(d.LATDD,
+											d.LONGDD)
+				})
+				//console.log(villages)
+				//console.log(healthPlaces)
+				
+				
+				function projectPoint(x, y) {
+				  var point = map.latLngToLayerPoint(new L.LatLng(y, x));
+				  this.stream.point(point.x, point.y);
+				}
+				
+				var transform = d3.geo.transform({point: projectPoint});
+				cholera_path= d3.geo.path().projection(transform);
+				
+				var feature3 = g.selectAll("path").attr("id", "cholera_history")
+					.data(cholera_history.features)
+					.enter().append("path")
+					.attr("d", cholera_path)
+					.style("opacity", .9)
+					.style('fill', fillCholeraFn)
+					.on("mouseover", function(d) {		
+					//console.log(d)
+						div.transition()		
+							.duration(200)		
+							.style("opacity", .9);	
+						//d3.select(this).style("cursor", "default");
+						div	.html("zone "+d.properties.FID_1 + " - no cholera cases: "+d.properties.NoCases+"<br/>")	
+							.style("left", (d3.event.pageX) + "px")		
+							.style("top", (d3.event.pageY - 28) + "px");	
+						})					
+					.on("mouseout", function(d) {		
+						div.transition()		
+							.duration(500)		
+							.style("opacity", 0);
+						//d3.select(this).style("cursor", "hand");
+					});
+				// Get province color
+				function fillCholeraFn(d){
+					//console.log(d.properties)
+				  return color_scale_cholera(d.properties.NoCases);
+				}
+				
+				
+				//console.log(villages)
+				//var gjLayer = L.geoJson(cholera_history);
+				
+				//console.log(cholera_history.features[0])
+				//for (var i=0,j=villages.length;i<j;i++){
+				//	var point1 = turf.point([villages[i]['LONGDD'],villages[i]['LATDD']]);
+				//	var isInside1 = turf.inside(point1, cholera_history.features[0]);
+				//	//var results = leafletPip.pointInLayer([villages[i]['LATDD'] ,villages[i]['LONGDD'] ], gjLayer);
+				//	//console.log(results)
+				//}
+				
+				var feature1 = g.selectAll("circle.villages")
+					.attr("id", "villages")
+					.data(villages)
+					.enter().append("circle")
+					.style("stroke", "black")  
+					.style("opacity", .6) 
+					.style("fill", "red")
+					.attr("r", 3)
+					.on("mouseover", function(d) {		
+					//console.log(d)
+						div.transition()		
+							.duration(200)		
+							.style("opacity", .9);	
+						//d3.select(this).style("cursor", "default");
+						div	.html(d.NAME + "<br/>")	
+							.style("left", (d3.event.pageX) + "px")		
+							.style("top", (d3.event.pageY - 28) + "px");	
+						})					
+					.on("mouseout", function(d) {		
+						div.transition()		
+							.duration(500)		
+							.style("opacity", 0);
+						//d3.select(this).style("cursor", "hand");
+					});
+				var feature2 = g.selectAll("circle.health")
+					.attr("id", "health")
+					.data(healthPlaces)
+					.enter().append("circle")
+					.style("stroke", "black")  
+					.style("opacity", .6) 
+					.style("fill", "green")
+					.attr("r", 3)
+					.on("mouseover", function(d) {		
+					//console.log(d)
+						div.transition()		
+							.duration(200)		
+							.style("opacity", .9);	
+						//d3.select(this).style("cursor", "default");
+						div	.html(d.F_NAME + "<br/>")	
+							.style("left", (d3.event.pageX) + "px")		
+							.style("top", (d3.event.pageY - 28) + "px");	
+						})					
+					.on("mouseout", function(d) {		
+						div.transition()		
+							.duration(500)		
+							.style("opacity", 0);
+						//d3.select(this).style("cursor", "hand");
+					});
+				
+				
+				map.on("viewreset", update);
+				update();
+				
+				
+				//function projectPoint(x, y) {
+				//  var point = map.latLngToLayerPoint(new L.LatLng(y, x));
+				///  this.stream.point(point.x, point.y);
+				//}
+
+				function update() {
+					feature1.attr("transform", 
+					function(d) { 
+						return "translate("+ 
+							map.latLngToLayerPoint(d.LatLng).x +","+ 
+							map.latLngToLayerPoint(d.LatLng).y +")";
+						}
+					)
+					feature2.attr("transform", 
+					function(d) { 
+						 return "translate("+ 
+							 map.latLngToLayerPoint(d.LatLng).x +","+ 
+							 map.latLngToLayerPoint(d.LatLng).y +")";
+						 }
+					)
+					//var bounds = d3.geo.bounds(cholera_history);
+					//console.log(bounds)
+					feature3.attr("d", cholera_path);
+					 //cholera_path = d3.geo.path().projection(transform);
+					//feature3.attr("transform", 
+					//function(d) { 
+					//	console.log(d)
+					//	 return "translate("+ 
+					//		 map.latLngToLayerPoint(d.x).x +","+ 
+					//		 map.latLngToLayerPoint(d.y).y +")";
+					//	 }
+					// )
+					//var bounds = cholera_path.bounds(cholera_history),
+					//topLeft = bounds[0],
+					//bottomRight = bounds[1];
+					//console.log()
+					//feature3 .attr("width", bottomRight[0] - topLeft[0])
+					//	.attr("height", bottomRight[1] - topLeft[1])
+					//	.style("left", topLeft[0] + "px")
+					//	.style("top", topLeft[1] + "px");
+
+					//feature3.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
+
+					//feature.attr("d", path);
+					
+					//cholera_path = d3.geo.path().projection(transform);
+				}
+			});
+		});
+	});
+	
+</script>
+</body>
+</html>

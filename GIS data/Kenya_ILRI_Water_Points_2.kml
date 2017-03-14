@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>OGRGeoJSON</name>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">1</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">34</SimpleData>
+		<SimpleData name="dspoint_id">34</SimpleData>
+		<SimpleData name="dspttype">1</SimpleData>
+		<SimpleData name="dspttypetx">Small lake, inland water body (lakes, reservoirs, lagoons)</SimpleData>
+		<SimpleData name="long_">34.548</SimpleData>
+		<SimpleData name="lat">-0.42</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>34.547779083000023,-0.419692307999981</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">2</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">35</SimpleData>
+		<SimpleData name="dspoint_id">35</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">34.231</SimpleData>
+		<SimpleData name="lat">-0.421</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>34.230690002000017,-0.420625001000019</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">3</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">36</SimpleData>
+		<SimpleData name="dspoint_id">36</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">34.374</SimpleData>
+		<SimpleData name="lat">-0.434</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>34.37445068400001,-0.433998406</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">4</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">37</SimpleData>
+		<SimpleData name="dspoint_id">37</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">33.952</SimpleData>
+		<SimpleData name="lat">-0.435</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>33.952411652000023,-0.435122997</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">5</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">38</SimpleData>
+		<SimpleData name="dspoint_id">38</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">33.927</SimpleData>
+		<SimpleData name="lat">-0.458</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>33.92736053499999,-0.458150804000013</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">6</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">39</SimpleData>
+		<SimpleData name="dspoint_id">39</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">33.941</SimpleData>
+		<SimpleData name="lat">-0.46</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>33.94105911299999,-0.46041458799999</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">7</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">40</SimpleData>
+		<SimpleData name="dspoint_id">40</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">34.137</SimpleData>
+		<SimpleData name="lat">-0.469</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>34.137279509999985,-0.469109386000014</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">8</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">41</SimpleData>
+		<SimpleData name="dspoint_id">41</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">34.065</SimpleData>
+		<SimpleData name="lat">-0.848</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>34.065231322999978,-0.848355889</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">9</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">42</SimpleData>
+		<SimpleData name="dspoint_id">42</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">33.94</SimpleData>
+		<SimpleData name="lat">-0.883</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>33.939769744999978,-0.88313180199998</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">10</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">43</SimpleData>
+		<SimpleData name="dspoint_id">43</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">33.933</SimpleData>
+		<SimpleData name="lat">-0.883</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>33.932929993000016,-0.883148074000019</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">11</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">44</SimpleData>
+		<SimpleData name="dspoint_id">44</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">33.938</SimpleData>
+		<SimpleData name="lat">-0.899</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>33.937530518000017,-0.899222076</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">12</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">45</SimpleData>
+		<SimpleData name="dspoint_id">45</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">34.072</SimpleData>
+		<SimpleData name="lat">-0.979</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>34.072410583000021,-0.979317904000027</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">13</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">46</SimpleData>
+		<SimpleData name="dspoint_id">46</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">36.591</SimpleData>
+		<SimpleData name="lat">2.705</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>36.590770721000013,2.70495295500001</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">14</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">47</SimpleData>
+		<SimpleData name="dspoint_id">47</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">36.588</SimpleData>
+		<SimpleData name="lat">2.696</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>36.588489531999983,2.69575405099999</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">15</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">48</SimpleData>
+		<SimpleData name="dspoint_id">48</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">36.6</SimpleData>
+		<SimpleData name="lat">2.693</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>36.59992981,2.693466902000011</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">16</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">49</SimpleData>
+		<SimpleData name="dspoint_id">49</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">36.582</SimpleData>
+		<SimpleData name="lat">2.689</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>36.581630706999988,2.688848972000017</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">17</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">50</SimpleData>
+		<SimpleData name="dspoint_id">50</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">36.577</SimpleData>
+		<SimpleData name="lat">2.588</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>36.577140808000024,2.587683916</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">18</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">51</SimpleData>
+		<SimpleData name="dspoint_id">51</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">36.061</SimpleData>
+		<SimpleData name="lat">0.703</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>36.060588837000012,0.702810883999973</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">19</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">52</SimpleData>
+		<SimpleData name="dspoint_id">52</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">36.033</SimpleData>
+		<SimpleData name="lat">0.689</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>36.033218384,0.688986598999975</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">20</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">53</SimpleData>
+		<SimpleData name="dspoint_id">53</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">36.07</SimpleData>
+		<SimpleData name="lat">0.634</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>36.069820403999984,0.633949815999983</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">21</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">54</SimpleData>
+		<SimpleData name="dspoint_id">54</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">36.054</SimpleData>
+		<SimpleData name="lat">0.602</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>36.053890228,0.601780771999984</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">22</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">1</SimpleData>
+		<SimpleData name="dspoint_id">1</SimpleData>
+		<SimpleData name="dspttype">1</SimpleData>
+		<SimpleData name="dspttypetx">Small lake, inland water body (lakes, reservoirs, lagoons)</SimpleData>
+		<SimpleData name="long_">37.463</SimpleData>
+		<SimpleData name="lat">-0.04</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>37.463050841999973,-0.04022799099999</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">23</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">2</SimpleData>
+		<SimpleData name="dspoint_id">2</SimpleData>
+		<SimpleData name="dspttype">1</SimpleData>
+		<SimpleData name="dspttypetx">Small lake, inland water body (lakes, reservoirs, lagoons)</SimpleData>
+		<SimpleData name="long_">37.466</SimpleData>
+		<SimpleData name="lat">-0.072</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>37.465549469,-0.072353116999977</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">24</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">3</SimpleData>
+		<SimpleData name="dspoint_id">3</SimpleData>
+		<SimpleData name="dspttype">1</SimpleData>
+		<SimpleData name="dspttypetx">Small lake, inland water body (lakes, reservoirs, lagoons)</SimpleData>
+		<SimpleData name="long_">37.404</SimpleData>
+		<SimpleData name="lat">-0.121</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>37.404300690000014,-0.120977201000017</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">25</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">4</SimpleData>
+		<SimpleData name="dspoint_id">4</SimpleData>
+		<SimpleData name="dspttype">1</SimpleData>
+		<SimpleData name="dspttypetx">Small lake, inland water body (lakes, reservoirs, lagoons)</SimpleData>
+		<SimpleData name="long_">37.359</SimpleData>
+		<SimpleData name="lat">-0.14</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>37.358810425,-0.139646798</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">26</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">5</SimpleData>
+		<SimpleData name="dspoint_id">5</SimpleData>
+		<SimpleData name="dspttype">1</SimpleData>
+		<SimpleData name="dspttypetx">Small lake, inland water body (lakes, reservoirs, lagoons)</SimpleData>
+		<SimpleData name="long_">37.338</SimpleData>
+		<SimpleData name="lat">-0.17</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>37.338470459,-0.169630199999972</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">27</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">6</SimpleData>
+		<SimpleData name="dspoint_id">6</SimpleData>
+		<SimpleData name="dspttype">1</SimpleData>
+		<SimpleData name="dspttypetx">Small lake, inland water body (lakes, reservoirs, lagoons)</SimpleData>
+		<SimpleData name="long_">37.35</SimpleData>
+		<SimpleData name="lat">-0.181</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>37.349948883000025,-0.181035504000022</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">28</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">7</SimpleData>
+		<SimpleData name="dspoint_id">7</SimpleData>
+		<SimpleData name="dspttype">1</SimpleData>
+		<SimpleData name="dspttypetx">Small lake, inland water body (lakes, reservoirs, lagoons)</SimpleData>
+		<SimpleData name="long_">37.339</SimpleData>
+		<SimpleData name="lat">-0.181</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>37.338550568000016,-0.181110397</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">29</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">8</SimpleData>
+		<SimpleData name="dspoint_id">8</SimpleData>
+		<SimpleData name="dspttype">1</SimpleData>
+		<SimpleData name="dspttypetx">Small lake, inland water body (lakes, reservoirs, lagoons)</SimpleData>
+		<SimpleData name="long_">36.598</SimpleData>
+		<SimpleData name="lat">-1.134</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>36.598091125,-1.13443195799999</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">30</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">9</SimpleData>
+		<SimpleData name="dspoint_id">9</SimpleData>
+		<SimpleData name="dspttype">1</SimpleData>
+		<SimpleData name="dspttypetx">Small lake, inland water body (lakes, reservoirs, lagoons)</SimpleData>
+		<SimpleData name="long_">36.591</SimpleData>
+		<SimpleData name="lat">-1.151</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>36.591331481999987,-1.150558949000015</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">31</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">10</SimpleData>
+		<SimpleData name="dspoint_id">10</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">36.275</SimpleData>
+		<SimpleData name="lat">-1.727</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>36.27465057400002,-1.72701895199998</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">32</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">11</SimpleData>
+		<SimpleData name="dspoint_id">11</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">36.248</SimpleData>
+		<SimpleData name="lat">-1.925</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>36.248249053999984,-1.924919009</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">33</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">12</SimpleData>
+		<SimpleData name="dspoint_id">12</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">36.253</SimpleData>
+		<SimpleData name="lat">-1.969</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>36.253040313999975,-1.968590021000011</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">34</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">13</SimpleData>
+		<SimpleData name="dspoint_id">13</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">36.251</SimpleData>
+		<SimpleData name="lat">-1.982</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>36.250831603999984,-1.98239994</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">35</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">14</SimpleData>
+		<SimpleData name="dspoint_id">14</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">36.258</SimpleData>
+		<SimpleData name="lat">-1.985</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>36.25770187400002,-1.984663963</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">36</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">15</SimpleData>
+		<SimpleData name="dspoint_id">15</SimpleData>
+		<SimpleData name="dspttype">1</SimpleData>
+		<SimpleData name="dspttypetx">Small lake, inland water body (lakes, reservoirs, lagoons)</SimpleData>
+		<SimpleData name="long_">39.3</SimpleData>
+		<SimpleData name="lat">-4.572</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>39.299930572999983,-4.572237014999985</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">37</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">16</SimpleData>
+		<SimpleData name="dspoint_id">16</SimpleData>
+		<SimpleData name="dspttype">1</SimpleData>
+		<SimpleData name="dspttypetx">Small lake, inland water body (lakes, reservoirs, lagoons)</SimpleData>
+		<SimpleData name="long_">39.291</SimpleData>
+		<SimpleData name="lat">-4.591</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>39.290920258000028,-4.590725899</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">38</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">17</SimpleData>
+		<SimpleData name="dspoint_id">17</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">34.02</SimpleData>
+		<SimpleData name="lat">-0.111</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>34.020050049000019,-0.111166798</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">39</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">18</SimpleData>
+		<SimpleData name="dspoint_id">18</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">34.047</SimpleData>
+		<SimpleData name="lat">-0.129</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>34.047458649000021,-0.129465595</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">40</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">19</SimpleData>
+		<SimpleData name="dspoint_id">19</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">34.084</SimpleData>
+		<SimpleData name="lat">-0.145</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>34.083988190000014,-0.145444795</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">41</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">20</SimpleData>
+		<SimpleData name="dspoint_id">20</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">34.595</SimpleData>
+		<SimpleData name="lat">-0.151</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>34.594841003,-0.15086129299999</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">42</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">21</SimpleData>
+		<SimpleData name="dspoint_id">21</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">34.57</SimpleData>
+		<SimpleData name="lat">-0.153</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>34.56977081299999,-0.153237506999972</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">43</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">22</SimpleData>
+		<SimpleData name="dspoint_id">22</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">34.595</SimpleData>
+		<SimpleData name="lat">-0.167</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>34.59489059399999,-0.166934594999987</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">44</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">23</SimpleData>
+		<SimpleData name="dspoint_id">23</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">34.561</SimpleData>
+		<SimpleData name="lat">-0.172</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>34.56069946299999,-0.171634494999978</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">45</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">24</SimpleData>
+		<SimpleData name="dspoint_id">24</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">34.538</SimpleData>
+		<SimpleData name="lat">-0.174</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>34.537899016999972,-0.174002707</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">46</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">25</SimpleData>
+		<SimpleData name="dspoint_id">25</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">34.547</SimpleData>
+		<SimpleData name="lat">-0.179</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>34.547039031999986,-0.178566500999978</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">47</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">26</SimpleData>
+		<SimpleData name="dspoint_id">26</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">34.556</SimpleData>
+		<SimpleData name="lat">-0.183</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>34.556179047,-0.183130205</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">48</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">27</SimpleData>
+		<SimpleData name="dspoint_id">27</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">34.064</SimpleData>
+		<SimpleData name="lat">-0.191</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>34.063579559,-0.191419497000027</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">49</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">28</SimpleData>
+		<SimpleData name="dspoint_id">28</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">34.118</SimpleData>
+		<SimpleData name="lat">-0.219</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>34.118389130000025,-0.218832597000016</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">50</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">29</SimpleData>
+		<SimpleData name="dspoint_id">29</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">34.137</SimpleData>
+		<SimpleData name="lat">-0.242</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>34.136688231999983,-0.241748004999977</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">51</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">30</SimpleData>
+		<SimpleData name="dspoint_id">30</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">34.16</SimpleData>
+		<SimpleData name="lat">-0.281</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>34.159599303999983,-0.280725092000012</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">52</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">31</SimpleData>
+		<SimpleData name="dspoint_id">31</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">34.171</SimpleData>
+		<SimpleData name="lat">-0.288</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>34.171020508000026,-0.28758359</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">53</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">32</SimpleData>
+		<SimpleData name="dspoint_id">32</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">34.276</SimpleData>
+		<SimpleData name="lat">-0.372</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>34.276180266999972,-0.3722682</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#OGRGeoJSON">
+		<SimpleData name="objectid">54</SimpleData>
+		<SimpleData name="perimeter">0</SimpleData>
+		<SimpleData name="dspoint_">33</SimpleData>
+		<SimpleData name="dspoint_id">33</SimpleData>
+		<SimpleData name="dspttype">2</SimpleData>
+		<SimpleData name="dspttypetx">Small island within inland water areas</SimpleData>
+		<SimpleData name="long_">34.274</SimpleData>
+		<SimpleData name="lat">-0.398</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>34.273971558000028,-0.397537887</coordinates></Point>
+  </Placemark>
+</Folder>
+<Schema name="OGRGeoJSON" id="OGRGeoJSON">
+	<SimpleField name="objectid" type="int"></SimpleField>
+	<SimpleField name="perimeter" type="int"></SimpleField>
+	<SimpleField name="dspoint_" type="int"></SimpleField>
+	<SimpleField name="dspoint_id" type="int"></SimpleField>
+	<SimpleField name="dspttype" type="int"></SimpleField>
+	<SimpleField name="dspttypetx" type="string"></SimpleField>
+	<SimpleField name="long_" type="float"></SimpleField>
+	<SimpleField name="lat" type="float"></SimpleField>
+</Schema>
+</Document></kml>
